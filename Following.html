@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="unsplasher.css">
+  <title>Unsplasher</title>
+</head>
+
+<body>
+  <div id="fixed-header-slide"></div>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <h3 class="navbar-brand"><a href="./index.html">Unsplasher</a></h3>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse navbar-nav" id="navbarSupportedContent">
+        <!-- <a class="nav-link nav-item" href="#">About<span class="sr-only">(current)</span></a> 關於我建置中brew --version--> 
+        <a class="nav-link nav-item" href="./index.html">Home<span class="sr-only">(current)</span></a>
+      </div>
+    </nav>
+  </header>
+  <div id="fixed-header-wrap"></div>
+
+  <!-- Adding Cards and DATA from API -->
+  <div id="main-container"></div>
+    
+  <!-- Adding Card Modal -->
+  <div class="modal fade" tabindex="-1" id="user-modal" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="user-modal-name">name</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-body" id="user-modal-body">
+            <div class="columns">
+              <div class="col-12 imageContainer">
+                <img id="inside-user-image" src="" alt="user-poster" class="img-fluid" />
+              </div>
+              <div class="row">
+                <div id="user-modal-location" class="col-12"></div>
+              </div>
+              <div class="row">
+                <div id="user-modal-bio" class="col-12"></div>
+              </div>
+              <div class="btn-container">
+                <a id="unsplashLink" href="" target="_blank"><i class="fab fa-unsplash fa-2x"></i></a>
+                <a id="instagramLink" href="" target="_blank"><i class="fab fa-instagram-square fa-2x"></i></a>
+                <button type="button" id="btn-unfollowing" class="btn btn-secondary " data-dismiss="modal" data-id="">Ｘ</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- page bar -->
+  <nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center" id="paginator">
+    </ul>
+  </nav>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+  ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+  integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+  integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://kit.fontawesome.com/209464e3ba.js" crossorigin="anonymous"></script>
+<script src="Follwing.js"></script>
+
+</body>
+</html>
