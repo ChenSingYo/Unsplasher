@@ -61,7 +61,7 @@ function addPageHtml (PageNum) {
   }
 }
 
-// function: 將名單切割，每一頁10個user
+// function: 將名單切割，每一頁20個user
 function getUsersByPage (page) {
   const data = filteredUsers.length ? filteredUsers : USERS
   const startIndex = (page - 1) * USERS_PER_PAGE
