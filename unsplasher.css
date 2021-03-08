@@ -30,6 +30,7 @@ header {
 #model-img {
   width: 230px;
   height: 325px;
+  object-fit: cover;
   border-radius: 20px;
   box-shadow: -1px -2px 1px rgba(240, 240, 229, 0.5), 2px 2px 2px 0px rgba(0, 0, 0, 0.4);
 }
