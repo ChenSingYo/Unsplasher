@@ -36,7 +36,6 @@ function showUserModal (id) {
   axios
     .get(USER_URL)
     .then((response) => {
-      console.log(response)
       const userName = document.querySelector('#user-modal-name')
       const userLocation = document.querySelector('#user-modal-location')
       const userBio = document.querySelector('#user-modal-bio')
@@ -52,6 +51,7 @@ function showUserModal (id) {
       userImage.setAttribute('src', response.data.user.profile_image.large)
       userID.setAttribute('data-id', response.data.id)
     })
+    .catch(error => console.log(error))
 }
 // function: 渲染分頁欄位
 function addPageHtml (PageNum) {
@@ -68,7 +68,6 @@ function getUsersByPage (page) {
   return data.slice(startIndex, startIndex + USERS_PER_PAGE)
 }
 
-// **建置中**
 // function: 加入追蹤清單
 function addToFollowing (id) {
   const userToFollow = USERS.find(USER => USER.id === id)
@@ -82,16 +81,11 @@ function addToFollowing (id) {
 
 // 計算頁數，將HTML渲染到頁面中
 function renderPaginator (amount) {
-  // 若無搜尋字串，則渲染所有資料
-  if (amount === 0) {
-    renderPaginator(USERS.length)
-    alert('Oops...not getting any result!')
-    searchForm.value = ''
-  } else {
-    const PageNum = Math.ceil(amount / USERS_PER_PAGE)
-    paginator.innerHTML = ''
-    addPageHtml(PageNum)
-  }
+  // 若無搜尋字串，則將總資料的筆數作為引數去做分頁
+  if (amount === 0) { amount = USERS.length }
+  const PageNum = Math.ceil(amount / USERS_PER_PAGE)
+  paginator.innerHTML = ''
+  addPageHtml(PageNum)
 }
 
 // 將從API取得的資料放進容器(User)中
@@ -112,13 +106,18 @@ searchForm.addEventListener('keyup', (e) => {
   filteredUsers = USERS.filter((item) => // 從users中篩選出符合字串
     item.user.name.toLowerCase().includes(keyword)
   )
-  renderPaginator(filteredUsers.length)
-  renderUserList(getUsersByPage(1))
+  if (filteredUsers.length >= 1) {
+    renderPaginator(filteredUsers.length)
+    renderUserList(getUsersByPage(1))
+  } else {
+    searchForm.value = keyword
+    mainPanel.innerHTML = '<h3>Not getting any results.</h3>'
+    paginator.innerHTML = ''
+  }
 })
 
 // 在main-container中掛上監聽器，點擊後顯示使用者資料
 mainPanel.addEventListener('click', (e) => {
-  console.log(e.target.dataset.id)
   if (e.target.matches('.info-overlay')) {
     showUserModal(e.target.dataset.id)
   }
@@ -126,7 +125,6 @@ mainPanel.addEventListener('click', (e) => {
 
 // 在個人彈出式頁面掛上監聽器，點擊後把id加到追蹤清單
 userContent.addEventListener('click', (e) => {
-  console.log(e.target)
   if (e.target.matches('#btn-following')) {
     addToFollowing(e.target.dataset.id)
   }
